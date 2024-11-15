@@ -1,5 +1,5 @@
 function setup() {
-  createCanvas(1000, 688);
+  createCanvas(displayWidth, displayHeight);
 }
 
 let gameState = true;
