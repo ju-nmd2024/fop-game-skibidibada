@@ -3,10 +3,10 @@ function setup() {
 }
 
 let gameState = true;
-let xposition = 200;
-let yposition = 200;
-let sizeX = 200;
-let sizeY = 200;
+let xposition = width / 2;
+let yposition = 100;
+let sizeX = 100;
+let sizeY = 100;
 let velocityY = 0.2;
 let acceleration = 0.2;
 
@@ -22,22 +22,54 @@ function preload() {
 }
 
 function moon(x, y, s) {
+  push();
   let a = 0;
   let b = 0;
   translate(x, y);
-  image(moonImage, a, b, sizeX * s, sizeY * s);
+  image(
+    moonImage,
+    a - (sizeX * s) / 2,
+    b - (sizeY * s) / 2,
+    sizeX * s,
+    sizeY * s
+  );
+  pop();
 }
+
+function earth(x, y, s) {
+  push();
+  let a = 0;
+  let b = 0;
+  translate(x, y);
+  image(
+    earthImage,
+    a - (sizeX * s) / 2,
+    b - (sizeY * s) / 2,
+    sizeX * s,
+    sizeY * s
+  );
+  pop();
+}
+
 function draw() {
   background(spaceImage);
 
   // if the game is running then run the game lol
+
+  earth(xposition, 1200, 15);
+  moon(xposition, yposition, 1);
   if (gameState == true) {
     yposition = yposition + velocityY;
     velocityY = velocityY + acceleration;
     if (keyIsDown(32)) {
       velocityY = velocityY - 0.7;
     }
-    // moon(0,characterY,1);
-    // image(earthImage, -100, 550, 1200, 500);
+    if (yposition > 550 && velocityY > 0.7) {
+      gameState = false;
+      console.log("died");
+    } else if (yposition > 550 && velocityY < 0.7) {
+      gameState = false;
+      console.log("win");
+    }
   }
 }
