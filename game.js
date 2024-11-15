@@ -2,10 +2,13 @@ function setup() {
   createCanvas(1000, 688);
 }
 
+let gameState = true;
 let xposition = 200;
 let yposition = 200;
 let sizeX = 200;
 let sizeY = 200;
+let velocityY = 0.2;
+let acceleration = 0.2;
 
 function preload() {
   // earth image taken from https://pngimg.com/image/25361
@@ -26,6 +29,15 @@ function moon(x, y, s) {
 }
 function draw() {
   background(spaceImage);
-  // moon(0,0,1);
-  // image(earthImage, -100, 550, 1200, 500);
+
+  // if the game is running then run the game lol
+  if (gameState == true) {
+    yposition = yposition + velocityY;
+    velocityY = velocityY + acceleration;
+    if (keyIsDown(32)) {
+      velocityY = velocityY - 0.7;
+    }
+    // moon(0,characterY,1);
+    // image(earthImage, -100, 550, 1200, 500);
+  }
 }
