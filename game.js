@@ -53,7 +53,7 @@ function earth(x, y, s) {
 
 function draw() {
   background(spaceImage);
-  image(moonImage, 100, 100, sizeX, sizeY); //testing
+  image(moonImage, 100, 100); //testing
   earth(xposition, 1200, 15);
   moon(xposition, yposition, 1);
 
