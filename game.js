@@ -53,17 +53,18 @@ function earth(x, y, s) {
 
 function draw() {
   background(spaceImage);
-
-  // if the game is running then run the game lol
-
+  image(moonImage, 100, 100, sizeX, sizeY); //testing
   earth(xposition, 1200, 15);
   moon(xposition, yposition, 1);
+
   if (gameState == true) {
     yposition = yposition + velocityY;
     velocityY = velocityY + acceleration;
+
     if (keyIsDown(32)) {
       velocityY = velocityY - 0.7;
     }
+
     if (yposition > 550 && velocityY > 0.7) {
       gameState = false;
       console.log("died");
