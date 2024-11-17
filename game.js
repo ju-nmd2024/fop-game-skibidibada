@@ -5,6 +5,7 @@ function setup() {
 let gameState = true;
 let xposition = width / 2;
 let yposition = 100;
+let lastyposition = yposition;
 let sizeX = 100;
 let sizeY = 100;
 let velocityY = 0.2;
@@ -12,6 +13,8 @@ let acceleration = 0.2;
 let a = 0;
 let b = 0;
 let s = 1;
+let rotation = 0.1;
+let threshhold;
 
 function preload() {
   // earth image taken from https://pngimg.com/image/25361
@@ -53,22 +56,33 @@ function earth(x, y, s) {
 function draw() {
   createCanvas(windowWidth, windowHeight);
   background(spaceImage);
-
   earth(xposition, 1200, 15);
-  moon(xposition, yposition, 1);
+  push();
+  translate(xposition, yposition);
+  rotate(rotation);
+  moon(0, 0, s);
+  pop();
 
   if (gameState == true) {
+    threshhold = 550 - (sizeY * s) / 2;
     yposition = yposition + velocityY;
     velocityY = velocityY + acceleration;
+    rotation = rotation + 0.1;
 
+    if (yposition > lastyposition) {
+      s = s + velocityY * 0.004;
+    } else if (yposition < lastyposition) {
+      s = s + velocityY * 0.004;
+    }
+    lastyposition = yposition;
     if (keyIsDown(32)) {
       velocityY = velocityY - 0.7;
     }
 
-    if (yposition > 550 && velocityY > 0.9) {
+    if (yposition > threshhold && velocityY > 0.9) {
       gameState = false;
       console.log("died");
-    } else if (yposition > 550 && velocityY < 0.9) {
+    } else if (yposition > threshhold && velocityY < 0.9) {
       gameState = false;
       console.log("win");
     }
