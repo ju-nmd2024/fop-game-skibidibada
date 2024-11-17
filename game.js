@@ -27,9 +27,8 @@ function preload() {
   spaceImage = loadImage("spacePNG.jpg"); //size 1224x688
 }
 
-function moon(x, y, s) {
+function moon(s) {
   push();
-  translate(x, y);
   image(
     moonImage,
     a - (sizeX * s) / 2,
@@ -60,7 +59,7 @@ function draw() {
   push();
   translate(xposition, yposition);
   rotate(rotation);
-  moon(0, 0, s);
+  moon(s);
   pop();
 
   if (gameState == true) {
