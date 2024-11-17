@@ -1,6 +1,4 @@
-function setup() {
-  createCanvas(screen.Width, screen.Height);
-}
+function setup() {}
 
 let gameState = true;
 let xposition = width / 2;
@@ -53,7 +51,7 @@ function earth(x, y, s) {
 }
 
 function draw() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(screen.Width, screen.Height);
   background(spaceImage);
   earth(xposition, 1200, 15);
   push();
