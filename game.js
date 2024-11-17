@@ -7,12 +7,14 @@ let xposition = width / 2;
 let yposition = 100;
 let sizeX = 100;
 let sizeY = 100;
-let velocityY = 0.2; //aa
+let velocityY = 0.2;
 let acceleration = 0.2;
 
 function preload() {
   // earth image taken from https://pngimg.com/image/25361
-  earthImage = loadImage("earthPNG.png"); //size 2579x2563
+  earthImage = loadImage(
+    "https://cdn.mos.cms.futurecdn.net/FaWKMJQnr2PFcYCmEyfiTm-1200-80.jpg"
+  ); //size 2579x2563
 
   // moon image taken from https://www.clipartmax.com/middle/m2i8H7G6i8d3Z5H7_file-moon-transparent-drawing/
   moonImage = loadImage("moonPNG.png"); // size 1000x1000
@@ -55,7 +57,7 @@ function draw() {
   createCanvas(windowWidth, windowHeight);
   background(spaceImage);
 
-  image(moonImage, 100, 100, 100, 100); //testing
+  image(moonImage, 100, 100, 200, 100); //testing
   earth(xposition, 1200, 15);
   moon(xposition, yposition, 1);
 
