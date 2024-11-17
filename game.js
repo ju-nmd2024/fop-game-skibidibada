@@ -55,7 +55,7 @@ function draw() {
   createCanvas(windowWidth, windowHeight);
   background(spaceImage);
 
-  image(moonImage, 100, 100, 200, 200); //testing
+  image(moonImage, 100, 100, 100, 100); //testing
   earth(xposition, 1200, 15);
   moon(xposition, yposition, 1);
 
