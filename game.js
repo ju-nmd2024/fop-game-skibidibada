@@ -49,10 +49,20 @@ function earth(x, y, s) {
   );
   pop();
 }
+function shadow() {
+  push();
+  noStroke();
+  fill(0, 0, 0, 100);
+  ellipse(xposition, threshhold + (sizeX * s) / 2, sizeX * s, 20);
+  pop();
+}
 
 function draw() {
   background(spaceImage);
   earth(xposition, 1200, 15);
+
+  shadow();
+
   push();
   translate(xposition, yposition);
   rotate(rotation);
