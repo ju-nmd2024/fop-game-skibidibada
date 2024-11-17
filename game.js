@@ -67,12 +67,13 @@ function draw() {
     threshhold = 550 - (sizeY * s) / 2;
     yposition = yposition + velocityY;
     velocityY = velocityY + acceleration;
-    rotation = rotation + 0.1;
 
     if (yposition > lastyposition) {
       s = s + velocityY * 0.004;
+      rotation = rotation + 0.1;
     } else if (yposition < lastyposition) {
       s = s + velocityY * 0.004;
+      rotation = rotation - 0.1;
     }
     lastyposition = yposition;
     if (keyIsDown(32)) {
