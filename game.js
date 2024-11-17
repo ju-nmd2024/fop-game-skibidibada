@@ -7,7 +7,7 @@ let xposition = width / 2;
 let yposition = 100;
 let sizeX = 100;
 let sizeY = 100;
-let velocityY = 0.2;
+let velocityY = 0.2; //aa
 let acceleration = 0.2;
 
 function preload() {
