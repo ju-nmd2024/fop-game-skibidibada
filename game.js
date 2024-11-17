@@ -1,5 +1,5 @@
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(screen.Width, screen.Height);
 }
 
 let gameState = true;
