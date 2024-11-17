@@ -1,5 +1,5 @@
 function setup() {
-  createCanvas(outerWidth, outerHeight);
+  createCanvas(windowWidth, windowHeight);
 }
 
 let gameState = true;
@@ -11,6 +11,7 @@ let velocityY = 0.2;
 let acceleration = 0.2;
 let a = 0;
 let b = 0;
+let s = 1;
 
 function preload() {
   // earth image taken from https://pngimg.com/image/25361
@@ -53,7 +54,6 @@ function draw() {
   createCanvas(windowWidth, windowHeight);
   background(spaceImage);
 
-  image(moonImage, 100, 100, 200, 100); //testing
   earth(xposition, 1200, 15);
   moon(xposition, yposition, 1);
 
