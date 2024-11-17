@@ -9,12 +9,12 @@ let sizeX = 100;
 let sizeY = 100;
 let velocityY = 0.2;
 let acceleration = 0.2;
+let a = 0;
+let b = 0;
 
 function preload() {
   // earth image taken from https://pngimg.com/image/25361
-  earthImage = loadImage(
-    "https://cdn.mos.cms.futurecdn.net/FaWKMJQnr2PFcYCmEyfiTm-1200-80.jpg"
-  ); //size 2579x2563
+  earthImage = loadImage("earthPNG.png"); //size 2579x2563
 
   // moon image taken from https://www.clipartmax.com/middle/m2i8H7G6i8d3Z5H7_file-moon-transparent-drawing/
   moonImage = loadImage("moonPNG.png"); // size 1000x1000
@@ -25,8 +25,6 @@ function preload() {
 
 function moon(x, y, s) {
   push();
-  let a = 0;
-  let b = 0;
   translate(x, y);
   image(
     moonImage,
@@ -40,8 +38,6 @@ function moon(x, y, s) {
 
 function earth(x, y, s) {
   push();
-  let a = 0;
-  let b = 0;
   translate(x, y);
   image(
     earthImage,
@@ -69,10 +65,10 @@ function draw() {
       velocityY = velocityY - 0.7;
     }
 
-    if (yposition > 550 && velocityY > 0.7) {
+    if (yposition > 550 && velocityY > 0.9) {
       gameState = false;
       console.log("died");
-    } else if (yposition > 550 && velocityY < 0.7) {
+    } else if (yposition > 550 && velocityY < 0.9) {
       gameState = false;
       console.log("win");
     }
