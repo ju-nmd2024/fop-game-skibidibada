@@ -51,7 +51,6 @@ function earth(x, y, s) {
 }
 
 function draw() {
-  createCanvas(screen.Width, screen.Height);
   background(spaceImage);
   earth(xposition, 1200, 15);
   push();
