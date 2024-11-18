@@ -1,4 +1,6 @@
-function setup() {}
+function setup() {
+  createCanvas(1000, 1000);
+}
 
 let gameState = true;
 let xposition = width / 2;
