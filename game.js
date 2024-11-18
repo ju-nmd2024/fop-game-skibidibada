@@ -14,6 +14,7 @@ var b = 0;
 var s = 1;
 var rotation = 0.1;
 var threshhold;
+var heatIncrease = 0;
 
 function preload() {
   // earth image taken from https://pngimg.com/image/25361
@@ -50,11 +51,19 @@ function earth(x, y, s) {
   );
   pop();
 }
+
 function shadow() {
   push();
   noStroke();
   fill(0, 0, 0, 100);
   ellipse(xposition, threshhold + (sizeX * s) / 2, sizeX * s, 20);
+  pop();
+}
+
+function heat(heatIncrease) {
+  push();
+  fill(255, 0, 0, heatIncrease);
+  ellipse(xposition, yposition, sizeX * s, sizeY * s);
   pop();
 }
 
@@ -69,6 +78,7 @@ function draw() {
   rotate(rotation);
   moon(s);
   pop();
+  heat(heatIncrease);
 
   if (gameState == true) {
     threshhold = 550 - (sizeY * s) / 2;
@@ -78,6 +88,7 @@ function draw() {
     if (yposition > lastyposition) {
       s = s + velocityY * 0.004;
       rotation = rotation + 0.1;
+      heatIncrease = heatIncrease + 2;
     } else if (yposition < lastyposition) {
       s = s + velocityY * 0.004;
       rotation = rotation - 0.1;
