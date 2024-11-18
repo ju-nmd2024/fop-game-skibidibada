@@ -1,20 +1,19 @@
 function setup() {
   createCanvas(1224, 688);
 }
-
-let gameState = true;
-let xposition = width / 2;
-let yposition = 100;
-let lastyposition = yposition;
-let sizeX = 100;
-let sizeY = 100;
-let velocityY = 0.2;
-let acceleration = 0.2;
-let a = 0;
-let b = 0;
-let s = 1;
-let rotation = 0.1;
-let threshhold;
+var gameState = true;
+var xposition = 1224 / 2;
+var yposition = 100;
+var lastyposition = yposition;
+var sizeX = 100;
+var sizeY = 100;
+var velocityY = 0.2;
+var acceleration = 0.2;
+var a = 0;
+var b = 0;
+var s = 1;
+var rotation = 0.1;
+var threshhold;
 
 function preload() {
   // earth image taken from https://pngimg.com/image/25361
