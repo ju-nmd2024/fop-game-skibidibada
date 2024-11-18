@@ -92,6 +92,7 @@ function draw() {
     } else if (yposition < lastyposition) {
       s = s + velocityY * 0.004;
       rotation = rotation - 0.1;
+      heatIncrease = 0;
     }
     lastyposition = yposition;
     if (keyIsDown(32)) {
