@@ -1,12 +1,13 @@
-function setup() {
-  createCanvas(1224, 688);
-}
 var gameState = true;
 var xposition = 1224 / 2;
 var yposition = 100;
 var lastyposition = yposition;
 var sizeX = 100;
 var sizeY = 100;
+var xSizeButton = 100;
+var ySizeButton = 100;
+var xpositionButton = 0;
+var ypositionButton = 0;
 var velocityY = 0.2;
 var acceleration = 0.2;
 var a = 0;
@@ -15,6 +16,7 @@ var s = 1;
 var rotation = 0.1;
 var threshhold;
 var heatIncrease = 0;
+var state = "start";
 
 function preload() {
   // earth image taken from https://pngimg.com/image/25361
@@ -25,6 +27,13 @@ function preload() {
 
   //space image taken from https://media.istockphoto.com/id/1509170124/vector/starry-space-night-blue-sky-seamless-pattern.jpg?s=612x612&w=0&k=20&c=YTq7eD2VhYN_P_AP8MA3dO9GknpOaQl8bAxMVnihoP0=
   spaceImage = loadImage("spacePNG.jpg"); //size 1224x688
+
+
+  //start button image taken from https://www.freepik.com/free-vector/pixel-space-game-interface-with-start-button_26348347.htm
+  //the rest is edited from the button image and font
+  startButtonImage = loadImage("startbuttonPNG.png"); 
+  backButtonImage = loadImage("backbuttonPNG.png"); 
+  titleImage = loadImage("titlePNG.png"); 
 }
 
 function moon(s) {
@@ -67,12 +76,58 @@ function heat(heatIncrease) {
   pop();
 }
 
-function draw() {
+function startButton(x,y,s){
+  push();
+  translate(x,y);
+  image(
+    startButtonImage,
+    a - (sizeX * s) / 2,
+    b - (sizeY * s) / 2,
+    2*sizeX * s,
+    sizeY * s
+  );
+  pop(); 
+}
+function backButton(x,y,s){
+  push();
+  translate(x,y);
+  image(
+    backButtonImage,
+    a - (sizeX * s) / 2,
+    b - (sizeY * s) / 2,
+    2*sizeX * s,
+    sizeY * s
+  );
+  pop(); 
+}
+
+function title(x,y,s){
+  push();
+  translate(x,y);
+  image(
+    titleImage,
+    a - (sizeX * s) / 2,
+    b - (sizeY * s) / 2,
+    2*sizeX * s,
+    sizeY * s
+  );
+  pop(); 
+}     
+
+function startScreen(){
+  createCanvas(1224, 688);   
   background(spaceImage);
-  earth(xposition, 1200, 15);
+  startButton(xpositionButton+xposition,ypositionButton+500,1);
 
+}
+function gameScreen(){
+  createCanvas(1224, 688);
+  background(spaceImage);
+
+  background(spaceImage); 
+  earth(xposition, 1200, 15); 
   shadow();
-
+  
   push();
   translate(xposition, yposition);
   rotate(rotation);
@@ -106,5 +161,27 @@ function draw() {
       gameState = false;
       console.log("win");
     }
+  }
+}
+function resultScreen(){
+  createCanvas(1224, 688); 
+  background(spaceImage);
+}
+
+function mousePressed() {
+  if (mouseX > xpositionButton && mouseX < xpositionButton + xSizeButton && mouseY > ypositionButton && mouseY < ypositionButton + ySizeButton) {
+    push();
+
+    pop();
+    console.log("Button is clicked");
+  }
+}
+function draw() {
+  if(state === "start"){
+    startScreen();
+  } else if(state === "game"){
+    gameScreen();
+  } else if(state === "result"){
+    resultScreen();
   }
 }
