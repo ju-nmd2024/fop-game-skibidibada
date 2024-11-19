@@ -216,9 +216,15 @@ function gameScreen() {
     if (yposition > threshhold && velocityY > 0.9) {
       state = "result";
       resultYes = "died";
+      yposition = 100;
+      heatIncrease = 0;
+      rotation = 0.1;
     } else if (yposition > threshhold && velocityY < 0.9) {
       state = "result";
       resultYes = "win";
+      yposition = 100;
+      heatIncrease = 0;
+      rotation = 0.1;
     }
     return resultYes;
   }
