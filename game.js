@@ -219,12 +219,14 @@ function gameScreen() {
       yposition = 100;
       heatIncrease = 0;
       rotation = 0.1;
+      velocityY = 0.2;
     } else if (yposition > threshhold && velocityY < 0.9) {
       state = "result";
       resultYes = "win";
       yposition = 100;
       heatIncrease = 0;
       rotation = 0.1;
+      velocityY = 0.2;
     }
     return resultYes;
   }
