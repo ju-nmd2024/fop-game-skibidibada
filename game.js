@@ -17,6 +17,7 @@ var rotation = 0.1;
 var threshhold;
 var heatIncrease = 0;
 var state = "start";
+var resultYes;
 
 function preload() {
   // earth image taken from https://pngimg.com/image/25361
@@ -78,7 +79,7 @@ function heat(heatIncrease) {
 
 function startButton(x,y,s){
   push();
-  translate(x+xposition,y+480);
+  translate(x,y);
   image(
     startButtonImage,
     a - (2*xSizeButton * s) / 2,
@@ -86,7 +87,12 @@ function startButton(x,y,s){
     2*xSizeButton * s,
     ySizeButton * s
   );
-  pop(); 
+  pop();
+  if(mouseIsPressed == true){
+    if (mouseX > x - (2*xSizeButton * s) / 2 && mouseX < x + xSizeButton*s && mouseY > y - (ySizeButton * s) / 2 && mouseY < y + ySizeButton*s / 2 ) {
+      state = "game";
+    } 
+  }  
 }
 function backButton(x,y,s){
   push();
@@ -113,14 +119,14 @@ function title(x,y,s){
   );
   pop();   
 }     
-
-function startScreen(){
+  
+function startScreen(){ 
   createCanvas(1224, 688);   
   background(spaceImage);
-  startButton(xpositionButton,ypositionButton,1.4);
+  startButton(xpositionButton+xposition,ypositionButton+480,1.4);
   title(xposition,200,1.4);
- 
-}
+  
+} 
 function gameScreen(){
   createCanvas(1224, 688);
   background(spaceImage);
@@ -156,24 +162,25 @@ function gameScreen(){
     }
 
     if (yposition > threshhold && velocityY > 0.9) {
-      gameState = false;
-      console.log("died");
+      state = "result";
+      resultYes="died";
     } else if (yposition > threshhold && velocityY < 0.9) {
-      gameState = false;
-      console.log("win");
+      state = "result";
+      resultYes="win";
     }
-  }
+    return resultYes;
+  } 
 }
-function resultScreen(){
+function resultScreen(resultYes){
   createCanvas(1224, 688); 
   background(spaceImage);
-}
-
-function mousePressed() {
-  if (mouseX > xpositionButton && mouseX < xpositionButton + xSizeButton && mouseY > ypositionButton && mouseY < ypositionButton + ySizeButton) {
-    console.log("Button is clicked");
+  if(resultYes== "win"){
+    console.log("win");
+  } else if (resultYes=="died"){
+    console.log("died");
   }
-}
+} 
+
 function draw() {
   if(state === "start"){
     startScreen();
@@ -183,3 +190,4 @@ function draw() {
     resultScreen();
   }
 }
+ 
