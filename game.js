@@ -1,3 +1,5 @@
+let x;
+let y;
 var gameState = true;
 var xposition = 1224 / 2;
 var yposition = 100;
@@ -18,6 +20,7 @@ var threshhold;
 var heatIncrease = 0;
 var state = "start";
 var resultYes;
+var type;
 
 function preload() {
   // earth image taken from https://pngimg.com/image/25361
@@ -78,6 +81,26 @@ function heat(heatIncrease) {
   pop();
 }
 
+function mousePressed() {
+  if (
+    mouseX > x - (2 * xSizeButton * s) / 2 &&
+    mouseX < x + xSizeButton * s &&
+    mouseY > y - (ySizeButton * s) / 2 &&
+    mouseY < y + (ySizeButton * s) / 2
+  ) {
+    state = "game";
+  }
+
+  if (
+    type == "result" &&
+    mouseX > x - (2 * xSizeButton * s) / 2 &&
+    mouseX < x + xSizeButton * s &&
+    mouseY > y - (ySizeButton * s) / 2 &&
+    mouseY < y + (ySizeButton * s) / 2
+  ) {
+    state = "start";
+  }
+}
 function startButton(x, y, s) {
   push();
   translate(x, y);
@@ -89,28 +112,23 @@ function startButton(x, y, s) {
     ySizeButton * s
   );
   pop();
-  if (mouseIsPressed == true) {
-    if (
-      mouseX > x - (2 * xSizeButton * s) / 2 &&
-      mouseX < x + xSizeButton * s &&
-      mouseY > y - (ySizeButton * s) / 2 &&
-      mouseY < y + (ySizeButton * s) / 2
-    ) {
-      state = "game";
-    }
-  }
+  // mousePressed(x, y, xSizeButton, ySizeButton, s, );
 }
+
 function backButton(x, y, s) {
   push();
   translate(x, y);
   image(
     backButtonImage,
-    a - (2 * sizeX * s) / 2,
-    b - (sizeY * s) / 2,
-    2 * sizeX * s,
-    sizeY * s
+    a - (2 * xSizeButton * s) / 2,
+    b - (ySizeButton * s) / 2,
+    2 * xSizeButton * s,
+    ySizeButton * s
   );
   pop();
+
+  // if (mouseIsPressed == true) {
+  // }
 }
 
 function title(x, y, s) {
@@ -125,11 +143,40 @@ function title(x, y, s) {
   );
   pop();
 }
+function winTitle(x, y, s) {
+  push();
+  translate(x, y);
+  image(
+    winImage,
+    a - (6 * sizeX * s) / 2,
+    b - (sizeY * s) / 2,
+    6 * sizeX * s,
+    sizeY * s
+  );
+  pop();
+}
+
+function diedTitle(x, y, s) {
+  push();
+  translate(x, y);
+  image(
+    diedImage,
+    a - (6 * sizeX * s) / 2,
+    b - (sizeY * s) / 2,
+    6 * sizeX * s,
+    sizeY * s
+  );
+  pop();
+}
 
 function startScreen() {
+  type = "start";
+  x = xpositionButton + xposition;
+  y = ypositionButton + 480;
+  s = 1.4;
   createCanvas(1224, 688);
   background(spaceImage);
-  startButton(xpositionButton + xposition, ypositionButton + 480, 1.4);
+  startButton(x, y, s);
   title(xposition, 200, 1.4);
 }
 function gameScreen() {
@@ -177,12 +224,18 @@ function gameScreen() {
   }
 }
 function resultScreen(resultYes) {
+  type = "result";
+  x = xpositionButton + xposition;
+  y = ypositionButton + 480;
+  s = 1.4;
   createCanvas(1224, 688);
   background(spaceImage);
   if (resultYes == "win") {
-    console.log("win");
+    backButton(x, y, s);
+    winTitle(xposition, 200, 1.4);
   } else if (resultYes == "died") {
-    console.log("died");
+    backButton(x, y, s);
+    diedTitle(xposition, 200, 1.4);
   }
 }
 
