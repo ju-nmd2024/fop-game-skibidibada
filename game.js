@@ -78,13 +78,13 @@ function heat(heatIncrease) {
 
 function startButton(x,y,s){
   push();
-  translate(x,y);
+  translate(x+xposition,y+480);
   image(
     startButtonImage,
-    a - (sizeX * s) / 2,
-    b - (sizeY * s) / 2,
-    2*sizeX * s,
-    sizeY * s
+    a - (2*xSizeButton * s) / 2,
+    b - (ySizeButton * s) / 2,
+    2*xSizeButton * s,
+    ySizeButton * s
   );
   pop(); 
 }
@@ -93,11 +93,11 @@ function backButton(x,y,s){
   translate(x,y);
   image(
     backButtonImage,
-    a - (sizeX * s) / 2,
+    a - (2*sizeX * s) / 2,
     b - (sizeY * s) / 2,
     2*sizeX * s,
-    sizeY * s
-  );
+    sizeY * s 
+  ); 
   pop(); 
 }
 
@@ -106,19 +106,20 @@ function title(x,y,s){
   translate(x,y);
   image(
     titleImage,
-    a - (sizeX * s) / 2,
+    a - (6*sizeX * s) / 2,
     b - (sizeY * s) / 2,
-    2*sizeX * s,
+    6*sizeX * s,
     sizeY * s
   );
-  pop(); 
+  pop();   
 }     
 
 function startScreen(){
   createCanvas(1224, 688);   
   background(spaceImage);
-  startButton(xpositionButton+xposition,ypositionButton+500,1);
-
+  startButton(xpositionButton,ypositionButton,1.4);
+  title(xposition,200,1.4);
+ 
 }
 function gameScreen(){
   createCanvas(1224, 688);
@@ -170,9 +171,6 @@ function resultScreen(){
 
 function mousePressed() {
   if (mouseX > xpositionButton && mouseX < xpositionButton + xSizeButton && mouseY > ypositionButton && mouseY < ypositionButton + ySizeButton) {
-    push();
-
-    pop();
     console.log("Button is clicked");
   }
 }
