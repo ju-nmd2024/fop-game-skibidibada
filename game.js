@@ -29,12 +29,11 @@ function preload() {
   //space image taken from https://media.istockphoto.com/id/1509170124/vector/starry-space-night-blue-sky-seamless-pattern.jpg?s=612x612&w=0&k=20&c=YTq7eD2VhYN_P_AP8MA3dO9GknpOaQl8bAxMVnihoP0=
   spaceImage = loadImage("spacePNG.jpg"); //size 1224x688
 
-
   //start button image taken from https://www.freepik.com/free-vector/pixel-space-game-interface-with-start-button_26348347.htm
   //the rest is edited from the button image and font
-  startButtonImage = loadImage("startbuttonPNG.png"); 
-  backButtonImage = loadImage("backbuttonPNG.png"); 
-  titleImage = loadImage("titlePNG.png"); 
+  startButtonImage = loadImage("startbuttonPNG.png");
+  backButtonImage = loadImage("backbuttonPNG.png");
+  titleImage = loadImage("titlePNG.png");
 }
 
 function moon(s) {
@@ -77,64 +76,68 @@ function heat(heatIncrease) {
   pop();
 }
 
-function startButton(x,y,s){
+function startButton(x, y, s) {
   push();
-  translate(x,y);
+  translate(x, y);
   image(
     startButtonImage,
-    a - (2*xSizeButton * s) / 2,
+    a - (2 * xSizeButton * s) / 2,
     b - (ySizeButton * s) / 2,
-    2*xSizeButton * s,
+    2 * xSizeButton * s,
     ySizeButton * s
   );
   pop();
-  if(mouseIsPressed == true){
-    if (mouseX > x - (2*xSizeButton * s) / 2 && mouseX < x + xSizeButton*s && mouseY > y - (ySizeButton * s) / 2 && mouseY < y + ySizeButton*s / 2 ) {
+  if (mouseIsPressed == true) {
+    if (
+      mouseX > x - (2 * xSizeButton * s) / 2 &&
+      mouseX < x + xSizeButton * s &&
+      mouseY > y - (ySizeButton * s) / 2 &&
+      mouseY < y + (ySizeButton * s) / 2
+    ) {
       state = "game";
-    } 
-  }  
+    }
+  }
 }
-function backButton(x,y,s){
+function backButton(x, y, s) {
   push();
-  translate(x,y);
+  translate(x, y);
   image(
     backButtonImage,
-    a - (2*sizeX * s) / 2,
+    a - (2 * sizeX * s) / 2,
     b - (sizeY * s) / 2,
-    2*sizeX * s,
-    sizeY * s 
-  ); 
-  pop(); 
-}
-
-function title(x,y,s){
-  push();
-  translate(x,y);
-  image(
-    titleImage,
-    a - (6*sizeX * s) / 2,
-    b - (sizeY * s) / 2,
-    6*sizeX * s,
+    2 * sizeX * s,
     sizeY * s
   );
-  pop();   
-}     
-  
-function startScreen(){ 
-  createCanvas(1224, 688);   
+  pop();
+}
+
+function title(x, y, s) {
+  push();
+  translate(x, y);
+  image(
+    titleImage,
+    a - (6 * sizeX * s) / 2,
+    b - (sizeY * s) / 2,
+    6 * sizeX * s,
+    sizeY * s
+  );
+  pop();
+}
+
+function startScreen() {
+  createCanvas(1224, 688);
   background(spaceImage);
-  startButton(xpositionButton+xposition,ypositionButton+480,1.4);
-  title(xposition,200,1.4);
-  
-} 
-function gameScreen(){
+  startButton(xpositionButton + xposition, ypositionButton + 480, 1.4);
+  title(xposition, 200, 1.4);
+}
+function gameScreen() {
   createCanvas(1224, 688);
   background(spaceImage);
 
-  background(spaceImage); 
-  earth(xposition, 1200, 15); 
+  background(spaceImage);
+  earth(xposition, 1200, 15);
   shadow();
-  
+
   push();
   translate(xposition, yposition);
   rotate(rotation);
@@ -163,31 +166,30 @@ function gameScreen(){
 
     if (yposition > threshhold && velocityY > 0.9) {
       state = "result";
-      resultYes="died";
+      resultYes = "died";
     } else if (yposition > threshhold && velocityY < 0.9) {
       state = "result";
-      resultYes="win";
+      resultYes = "win";
     }
     return resultYes;
-  } 
+  }
 }
-function resultScreen(resultYes){
-  createCanvas(1224, 688); 
+function resultScreen(resultYes) {
+  createCanvas(1224, 688);
   background(spaceImage);
-  if(resultYes== "win"){
+  if (resultYes == "win") {
     console.log("win");
-  } else if (resultYes=="died"){
+  } else if (resultYes == "died") {
     console.log("died");
   }
-} 
+}
 
 function draw() {
-  if(state === "start"){
+  if (state === "start") {
     startScreen();
-  } else if(state === "game"){
+  } else if (state === "game") {
     gameScreen();
-  } else if(state === "result"){
-    resultScreen();
+  } else if (state === "result") {
+    resultScreen(resultYes);
   }
 }
- 
