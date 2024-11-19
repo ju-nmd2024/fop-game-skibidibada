@@ -34,6 +34,8 @@ function preload() {
   startButtonImage = loadImage("startbuttonPNG.png");
   backButtonImage = loadImage("backbuttonPNG.png");
   titleImage = loadImage("titlePNG.png");
+  winImage = loadImage("winPNG.png");
+  diedImage = loadImage("diedPNG.png");
 }
 
 function moon(s) {
